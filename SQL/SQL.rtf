@@ -1,0 +1,275 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 -- phpMyAdmin SQL Dump\
+-- version 4.9.3\
+-- https://www.phpmyadmin.net/\
+--\
+-- Host: localhost:8889\
+-- Generation Time: Sep 28, 2020 at 05:07 PM\
+-- Server version: 5.7.26\
+-- PHP Version: 7.4.2\
+\
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";\
+SET time_zone = "+00:00";\
+\
+--\
+-- Database: `photo_app`\
+--\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `addresses`\
+--\
+\
+CREATE TABLE `addresses` (\
+  `id` bigint(20) NOT NULL,\
+  `address_id` varchar(30) NOT NULL,\
+  `city` varchar(15) NOT NULL,\
+  `country` varchar(15) NOT NULL,\
+  `postal_code` varchar(7) NOT NULL,\
+  `street_name` varchar(100) NOT NULL,\
+  `type` varchar(10) NOT NULL,\
+  `users_id` bigint(20) DEFAULT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `addresses`\
+--\
+\
+INSERT INTO `addresses` (`id`, `address_id`, `city`, `country`, `postal_code`, `street_name`, `type`, `users_id`) VALUES\
+(96, 'MWVzOkKLIDzkOr8O3DSED0DfhnLoId', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'billing', 95),\
+(97, 'Aw0YPOibMRPNGNMsRlHVedXikEnQih', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'shipping', 95),\
+(99, '7mrlFGcKG46TPXDJZdFPxG7tXN1EQP', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'billing', 98),\
+(100, '0QKHgmipxqPNI6sRHheqzIAz4MyCJg', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'shipping', 98),\
+(106, 'X6sNh6Sp0Nn4dokEy85Ng4tnkQjgL8', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'billing', 105),\
+(107, 'yC1R2dWj5F0szRoY7IXwgWFS6Dqflf', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'shipping', 105),\
+(110, 'YzK6Wo2O50Qg9IofWFwvGbDAejPPzy', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'billing', 109),\
+(111, 't7OYIqupWKwNaMN6qGjqD5hjdv1NxZ', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'shipping', 109),\
+(114, 'F9HFhMqJRHvvBZsosBNzNQntUhzua8', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'billing', 113),\
+(115, 'CRnpLzfLjqjOPiPHMfhRdn7tM8Cb1d', 'Belgrade', 'Serbia', '11000', 'Dunavska 22', 'shipping', 113);\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `authorities`\
+--\
+\
+CREATE TABLE `authorities` (\
+  `id` bigint(20) NOT NULL,\
+  `name` varchar(20) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `authorities`\
+--\
+\
+INSERT INTO `authorities` (`id`, `name`) VALUES\
+(22, 'READ_AUTHORITY'),\
+(23, 'WRITE_AUTHORITY'),\
+(24, 'DELETE_AUTHORITY');\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `hibernate_sequence`\
+--\
+\
+CREATE TABLE `hibernate_sequence` (\
+  `next_val` bigint(20) DEFAULT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `hibernate_sequence`\
+--\
+\
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES\
+(127);\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `roles`\
+--\
+\
+CREATE TABLE `roles` (\
+  `id` bigint(20) NOT NULL,\
+  `name` varchar(20) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `roles`\
+--\
+\
+INSERT INTO `roles` (`id`, `name`) VALUES\
+(25, 'ROLE_USER'),\
+(26, 'ROLE_ADMIN');\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `roles_authorities`\
+--\
+\
+CREATE TABLE `roles_authorities` (\
+  `roles_id` bigint(20) NOT NULL,\
+  `authorities_id` bigint(20) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `roles_authorities`\
+--\
+\
+INSERT INTO `roles_authorities` (`roles_id`, `authorities_id`) VALUES\
+(25, 22),\
+(25, 23),\
+(26, 22),\
+(26, 23),\
+(26, 24);\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `users`\
+--\
+\
+CREATE TABLE `users` (\
+  `id` bigint(20) NOT NULL,\
+  `email` varchar(120) NOT NULL,\
+  `email_verification_status` tinyint(1) NOT NULL,\
+  `email_verification_token` varchar(255) DEFAULT NULL,\
+  `encrypted_password` varchar(255) NOT NULL,\
+  `first_name` varchar(50) NOT NULL,\
+  `last_name` varchar(50) NOT NULL,\
+  `user_id` varchar(255) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `users`\
+--\
+\
+INSERT INTO `users` (`id`, `email`, `email_verification_status`, `email_verification_token`, `encrypted_password`, `first_name`, `last_name`, `user_id`) VALUES\
+(94, 'admin777@test.com', 1, NULL, '$2a$10$kMl3FhVHYpXmF3wDVmxDf.9ELUO0VIXjy3Hl9HHY.CSr86b7R3kJ2', 'Marko', 'Kocic', 'S3aKTTwHykLU3ubX8dCtFgL2qr2v80'),\
+(95, 'test777@test.com', 0, NULL, '$2a$10$LJV.v0nQ8wRlLJZ/boPFWuacStnpJPaezD787d0K5ZETr//nkA7SO', 'Marko', 'Kocic', '20nu1kWnoGtCgnjeD1j8Hpg2f1lvUS'),\
+(98, 'test123@test.com', 0, NULL, '$2a$10$Y/4kdfw8nfG5dxanBQZHr..CgBRqJLquo9ueO/oY1Htn6T.U5mKwG', 'Marko', 'Kocic', 'eBljZufhiRrxWGUq6PyNU3bqcNidSC'),\
+(101, 'admin@test.com', 1, NULL, '$2a$10$gQH2mfZ35oY872GiZcPM9eViPaej2ExnVKKjBTqZLqkSwonfZRKLq', 'Marko', 'Kocic', 'thXYp7RuFQnRVLrGxV1VRram9oigpb'),\
+(102, 'admin22@test.com', 1, NULL, '$2a$10$7FW0fcnxscDiv9.V1WCbe.l/VV1P3L4chBmxkYYxreHdgubHNOYGq', 'Marko', 'Kocic', 'gbfgvpn5QqgUZtPnPON2XvKboG9X2u'),\
+(103, 'admin66@test.com', 1, NULL, '$2a$10$zE2HPeCH.dWeIOVndMyVP.45cq1gqx75baWERO2vReVD.mHs7uegW', 'Marko', 'Kocic', 'RdsQGfcqZZVKu75iPsmL4WP6LKztZo'),\
+(104, 'admin661@test.com', 1, NULL, '$2a$10$pBli9TQTyZpXvZKp9y/qFuGte8C6tT1HkupMv6w7wKzrVWs7ftls2', 'Marko', 'Kocic', 'GkDDDlPjEc3neJdQ8YN1LIz1GzHPPR'),\
+(105, 'test999@test.com', 1, NULL, '$2a$10$bfDaWFgtqRd/gA39kKub2utEhSgqQawoug.LHw1WaWzwl1/414toy', 'Marko', 'Kocic', 'aEMDBPKoBs2fmEjRBumh6vFE2fYw2k'),\
+(108, 'admin555@test.com', 1, NULL, '$2a$10$9rl7km/fdhIHeTnOjIzP1ONOx5kMT5xEF87ClwH1d11OUe1aZrrbm', 'Marko', 'Kocic', '7YDDou1hPFhyFpsKe79nLhnlv0pDaG'),\
+(109, 'test888@test.com', 1, NULL, '$2a$10$ScTHk8XDtarB/Zb8hhMV6OJ8erK6vC3exSDLd1GaYchY1vKEaEtAq', 'Marko', 'Kocic', 'p1likuVMFwByoknOw7cI8EGfovknbz'),\
+(112, 'admin444@test.com', 1, NULL, '$2a$10$4zwMKQbJoxxMN8UmxdgmmeVUztxyErDKvU5fN/7RveY6qqn9huxuO', 'Marko', 'Kocic', 'cw4Xss4HwapeGPDyP82adGs16YELDM'),\
+(113, 'test543@test.com', 1, NULL, '$2a$10$Iqahpd4GEeerBpObCGVmHOX9LB51t7JzLfjP0Ou7NYWQUnhclbRuK', 'Marko', 'Kocic', 'vfMhW68bXJf75yxEgACwdRUx0cOrez'),\
+(116, 'admin323@test.com', 1, NULL, '$2a$10$i2hsVnvNe7ZqDnTI0YKZY.J1EUt6fx1M8b3pDBavClt1Ja2ICbbgy', 'Marko', 'Kocic', 'QmUIEXFrclLrq98QJQ5RSPo0in7Axs'),\
+(117, 'admin327@test.com', 1, NULL, '$2a$10$/ILObnxUmOadSgE0SSc0NOBCUX3ba1HJbcsji0NVFTtJzpqtkmfIa', 'Marko', 'Kocic', 'Ofn7m3viFgNe0eolvkiPaCDmD5dZio'),\
+(118, 'admin111@test.com', 1, NULL, '$2a$10$zGbL2Oc1TWxcWeDyKSSD5OGyUb2WeDoj9zdz5L2xc92FlKpr/ht5K', 'Marko', 'Kocic', '2LpQgHhidIGFqSQVWjYsfg1XShPLeT'),\
+(125, 'adminmarko@test.com', 1, NULL, '$2a$10$SJY1THi7hW63/oo6q64xqeHDOcuLd3E/zyL54D1W6.tA0GfkACJ5u', 'Marko', 'Kocic', 'ZitJLPPwMq3chCRPSdthTSn6a6GsBU'),\
+(126, 'adminmarko1@test.com', 1, NULL, '$2a$10$Q7TkKRf01NBSe3opNuQqnOUVH8DWpVuEfMiwJnJ.uV0hmoQGEq4j.', 'Marko', 'Kocic', 'EOCDXrDhLMaCdu4woVkyILULxb2fxh');\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `users_roles`\
+--\
+\
+CREATE TABLE `users_roles` (\
+  `users_id` bigint(20) NOT NULL,\
+  `roles_id` bigint(20) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+--\
+-- Dumping data for table `users_roles`\
+--\
+\
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES\
+(94, 26),\
+(95, 25),\
+(98, 25),\
+(101, 26),\
+(102, 26),\
+(103, 26),\
+(104, 26),\
+(105, 25),\
+(108, 26),\
+(109, 25),\
+(112, 26),\
+(113, 25),\
+(116, 26),\
+(117, 26),\
+(118, 26),\
+(125, 26),\
+(126, 26);\
+\
+--\
+-- Indexes for dumped tables\
+--\
+\
+--\
+-- Indexes for table `addresses`\
+--\
+ALTER TABLE `addresses`\
+  ADD PRIMARY KEY (`id`),\
+  ADD KEY `FKr9ce5hb61hmpvm107ccip0irl` (`users_id`);\
+\
+--\
+-- Indexes for table `authorities`\
+--\
+ALTER TABLE `authorities`\
+  ADD PRIMARY KEY (`id`);\
+\
+--\
+-- Indexes for table `roles`\
+--\
+ALTER TABLE `roles`\
+  ADD PRIMARY KEY (`id`);\
+\
+--\
+-- Indexes for table `roles_authorities`\
+--\
+ALTER TABLE `roles_authorities`\
+  ADD KEY `FKe4pjsn2c2ttg8bpbe1yk29snn` (`authorities_id`),\
+  ADD KEY `FKcj918h3ee3qad1xwbx4jvvcgc` (`roles_id`);\
+\
+--\
+-- Indexes for table `users`\
+--\
+ALTER TABLE `users`\
+  ADD PRIMARY KEY (`id`),\
+  ADD UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`);\
+\
+--\
+-- Indexes for table `users_roles`\
+--\
+ALTER TABLE `users_roles`\
+  ADD KEY `FKa62j07k5mhgifpp955h37ponj` (`roles_id`),\
+  ADD KEY `FKml90kef4w2jy7oxyqv742tsfc` (`users_id`);\
+\
+--\
+-- Constraints for dumped tables\
+--\
+\
+--\
+-- Constraints for table `addresses`\
+--\
+ALTER TABLE `addresses`\
+  ADD CONSTRAINT `FKr9ce5hb61hmpvm107ccip0irl` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);\
+\
+--\
+-- Constraints for table `roles_authorities`\
+--\
+ALTER TABLE `roles_authorities`\
+  ADD CONSTRAINT `FKcj918h3ee3qad1xwbx4jvvcgc` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`),\
+  ADD CONSTRAINT `FKe4pjsn2c2ttg8bpbe1yk29snn` FOREIGN KEY (`authorities_id`) REFERENCES `authorities` (`id`);\
+\
+--\
+-- Constraints for table `users_roles`\
+--\
+ALTER TABLE `users_roles`\
+  ADD CONSTRAINT `FKa62j07k5mhgifpp955h37ponj` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`),\
+  ADD CONSTRAINT `FKml90kef4w2jy7oxyqv742tsfc` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);\
+}
